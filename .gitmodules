@@ -7,3 +7,6 @@
 [submodule "order-ms"]
 	path = order-ms
 	url = https://github.com/Kutedokashi/order-microservice.git
+[submodule "payment-ms"]
+	path = payment-ms
+	url = https://github.com/Kutedokashi/payment-microservice.git
