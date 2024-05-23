@@ -59,6 +59,8 @@ services:
   volumes:
    - ./payment-ms/src:/usr/src/app/src
   command: npm run start:dev
+  ports:
+   - ${PAYMENT_MICROSERVICE_PORT}:${PAYMENT_MICROSERVICE_PORT}
   environment:
    - PORT=${PAYMENT_MICROSERVICE_PORT}
    - NATS_SERVERS=nats://nats-server:4222
