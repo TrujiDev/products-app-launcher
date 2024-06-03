@@ -38,18 +38,18 @@ services:
    - NATS_SERVERS=nats://nats-server:4222
    - DATABASE_URL=file:./dev.db
 
- #  orders-ms:
- #   container_name: Order_Microservice
- #   depends_on:
- #    - orders-db
- #   build: ./order-ms
- #   volumes:
- #    - ./order-ms/src:/usr/src/app/src
- #   command: npm run start:dev
- #   environment:
- #    - PORT=3002
- #    - DATABASE_URL=postgresql://postgres:123456@orders-db:5432/ordersdb?schema=public
- #    - NATS_SERVERS=nats://nats-server:4222
+ orders-ms:
+  container_name: Order_Microservice
+  build:
+   context: ./order-ms
+   dockerfile: dockerfile.prod
+   args:
+    - ORDERS_DATABASE_URL=${ORDERS_DATABASE_URL}
+  image: order-ms
+  environment:
+   - PORT=3002
+   - DATABASE_URL=${ORDERS_DATABASE_URL}
+   - NATS_SERVERS=nats://nats-server:4222
 
  payments-ms:
   container_name: Payment_Microservice
